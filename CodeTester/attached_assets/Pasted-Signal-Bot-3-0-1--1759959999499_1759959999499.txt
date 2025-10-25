@@ -1,0 +1,225 @@
+Signal Bot 3.0 — Инженерно-доработанное ТЗ
+1️⃣ Цель проекта
+
+Создать профессиональный аналитический бот для криптовалютных рынков с возможностью:
+
+Генерации сигналов с вероятностями и Risk/Reward
+
+Мультитаймфрейм подтверждения
+
+Корреляционного анализа
+
+Адаптивного обучения и AI-тюнера (заглушка в Phase A)
+
+Интеграции с Telegram и CLI
+
+Поддержки бирж: Binance, Bybit (REST + WebSocket)
+
+2️⃣ Фазы разработки
+📋 Phase 1 — MVP
+
+Основное:
+
+Структура проекта signal_bot_3/
+
+REST + WebSocket Collector для Binance и Bybit (OHLCV, CVD, Levels, VWAP)
+
+Persistence в SQLite (market.db)
+
+CLI для бэктеста с базовыми сигналами
+
+Telegram Bot /start, /help, /run_backtest
+
+Markdown-сообщения и стабилизация polling
+
+Заглушка для AdaptiveSignalEngine: метод predict() возвращает случайные вероятности
+
+Асинхронность / нагрузка:
+
+Использовать asyncio для WebSocket и длительных расчётов
+
+Прогресс-бар через tqdm для локального отображения
+
+KPI Phase 1:
+
+Бэктест 1000 сигналов < 5 секунд
+
+Telegram бот обрабатывает 5–10 пользователей одновременно без падений
+
+Корректный сбор и сохранение данных с Bybit и Binance
+
+📋 Phase 2 — Продвинутый анализ
+
+Персигнал метрики: WinRate, PnL, MaxDrawdown, Sharpe, Sortino, Profit Factor
+
+Equity и Drawdown графики (matplotlib / seaborn)
+
+Экспорт CSV/JSON
+
+Inline кнопки Telegram ("Подробный отчёт", "Скачать CSV", "Equity Curve")
+
+Проверка передачи данных между Telegram и backtester
+
+KPI Phase 2:
+
+Экспорт CSV/JSON и графиков без ошибок
+
+Графики генерируются < 2 секунд для 1000 сигналов
+
+Inline кнопки работают для 5–10 пользователей
+
+📋 Phase 3 — AI и экспертный уровень (будущее)
+
+AdaptiveSignalEngine: автоматическая подстройка весов (начать с Linear Regression, потом ML/NN)
+
+Smart Money Footprint и рыночная ликвидность
+
+On-chain данные для альтов (Dune Analytics free tier, Etherscan API)
+
+Новости и макро (NewsAPI, Alpha Vantage, BeautifulSoup)
+
+Секторная кластеризация сигналов
+
+Вероятностный прогноз движения + Risk/Reward
+
+Риски Phase 3:
+
+Overfit ML моделей → использовать cross-validation, тестовые данные
+
+Dead Code если MVP не заработает → сохранить заглушки для совместимости
+
+3️⃣ Архитектура
+signal_bot_3/
+├── core/
+│   ├── __init__.py
+│   ├── bot_controller.py
+│   └── scheduler.py
+├── data/
+│   ├── market.db
+│   ├── ohlcv_collector.py    # Binance + Bybit
+│   ├── ws_collector.py       # async WebSocket
+│   └── persistence.py
+├── metrics/
+│   ├── performance.py
+│   ├── per_signal.py
+│   └── visualizer.py
+├── signals/
+│   ├── simple_signal.py
+│   ├── advanced_signal.py
+│   └── signal_engine.py
+├── risk_manager/
+│   ├── reward_calculator.py
+│   ├── position_sizer.py
+│   └── volatility_adjuster.py
+├── correlation_analyzer/
+│   ├── btc_dominance.py
+│   ├── sector_rotation.py
+│   └── coin_clustering.py
+├── adaptive_engine/
+│   ├── ml_predictor.py       # заглушка Phase A
+│   ├── pattern_recognizer.py # заглушка Phase A
+│   └── auto_tuner.py         # заглушка Phase A
+├── multi_timeframe/
+│   ├── timeframe_sync.py
+│   ├── trend_confirmer.py
+│   └── divergence_detector.py
+├── telegram/
+│   ├── telegram_bot.py
+│   ├── backtest_handler.py
+│   ├── callback_handlers.py
+│   └── keyboards.py
+├── ui/
+│   ├── cli.py
+│   └── dashboard.py
+├── config/
+│   └── config.json            # использовать env vars для ключей API
+├── tests/
+│   ├── unit/
+│   └── integration/
+└── main.py
+
+4️⃣ Tech Stack & Dependencies
+
+Python 3.10+
+
+ccxt (Binance, Bybit)
+
+pandas, numpy, ta-lib
+
+matplotlib, seaborn
+
+telebot / aiogram
+
+scikit-learn, TensorFlow/PyTorch (для Phase 3)
+
+requests, BeautifulSoup (для новостей)
+
+tqdm (прогресс-бар)
+
+asyncio (WebSocket, Telegram)
+
+SQLite (market.db) для локального хранения
+
+5️⃣ Чек-лист Phase A
+
+Высокий приоритет:
+
+ Создать структуру проекта signal_bot_3/
+
+ REST/WebSocket Collector + Persistence (Bybit + Binance)
+
+ CLI backtester + per-signal метрики
+
+ Telegram Bot /start, /help, /run_backtest
+
+ Markdown сообщения, стабилизация polling
+
+ Заглушка для AdaptiveEngine (random predictions)
+
+ Async WebSocket, прогресс-бар для длительных расчётов
+
+Средний приоритет:
+
+ Inline кнопки Telegram
+
+ Отправка CSV/JSON файлов и графиков
+
+ Проверка корректности передачи данных
+
+Низкий приоритет:
+
+ История бэктестов пользователя
+
+ Подготовка к Phase 3 (AdaptiveEngine, AI-тюнер, ML)
+
+6️⃣ Метрики успеха Phase A
+
+1000 сигналов бэктеста < 5 секунд
+
+Telegram бот стабильно работает с 5–10 пользователями
+
+Все данные с Bybit/REST корректно сохраняются в market.db
+
+Прогресс-бар отображает статус расчёта без зависаний
+
+7️⃣ Риски и mitigation
+
+WebSocket disconnects → reconnect + кеширование
+
+API downtime → fallback на cached data
+
+AI/ML overfit → заглушки, cross-validation, тестовые наборы
+
+Telegram high load → async + rate limiting
+
+Безопасность → ключи в env vars, проверка input
+
+8️⃣ Документация
+
+README.md: setup, команды, запуск
+
+Jupyter notebooks для Phase 3 (ML prototypes)
+
+Logging: logging lib + уровни (INFO, WARNING, ERROR)
+
+CI/CD: GitHub Actions (unit & integration тесты)

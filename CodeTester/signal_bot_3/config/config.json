@@ -1,0 +1,54 @@
+{
+  "exchanges": {
+    "binance": {
+      "enabled": true,
+      "rest_endpoint": "https://api.binance.com",
+      "ws_endpoint": "wss://stream.binance.com:9443",
+      "rate_limit": 1200,
+      "symbols": ["BTC/USDT", "ETH/USDT", "BNB/USDT"]
+    },
+    "bybit": {
+      "enabled": true,
+      "rest_endpoint": "https://api.bybit.com",
+      "ws_endpoint": "wss://stream.bybit.com",
+      "rate_limit": 120,
+      "symbols": ["BTC/USDT", "ETH/USDT"]
+    }
+  },
+  "timeframes": {
+    "fast": "5m",
+    "medium": "15m",
+    "slow": "1h",
+    "trend": "4h"
+  },
+  "signal_engine": {
+    "min_confirmation_score": 0.6,
+    "risk_reward_min": 1.5,
+    "max_open_positions": 3,
+    "adaptive_mode": false
+  },
+  "backtesting": {
+    "initial_capital": 10000,
+    "commission": 0.001,
+    "slippage": 0.0005,
+    "max_signals": 1000
+  },
+  "risk_management": {
+    "max_risk_per_trade": 0.02,
+    "max_portfolio_risk": 0.06,
+    "use_atr_stops": true,
+    "atr_multiplier": 2.0
+  },
+  "websocket": {
+    "reconnect_delay": 5,
+    "max_reconnect_attempts": 10,
+    "ping_interval": 30,
+    "timeout": 60
+  },
+  "logging": {
+    "level": "INFO",
+    "format": "%(asctime)s - %(name)s - %(levelname)s - %(message)s",
+    "rotation": "1 day",
+    "retention": "7 days"
+  }
+}

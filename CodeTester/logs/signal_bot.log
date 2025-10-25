@@ -1,0 +1,16 @@
+2025-10-08 22:12:53 - signal_bot - INFO - ==================================================
+2025-10-08 22:12:53 - signal_bot - INFO - Signal Bot 3.0 - Starting...
+2025-10-08 22:12:53 - signal_bot - INFO - ==================================================
+2025-10-08 22:12:53 - signal_bot - WARNING - TELEGRAM_BOT_TOKEN not set, bot will not start
+2025-10-08 22:12:53 - signal_bot - INFO - Starting Bot Controller...
+2025-10-08 22:12:53 - signal_bot - ERROR - Cannot start bot: TELEGRAM_BOT_TOKEN not set
+2025-10-08 22:12:53 - signal_bot - INFO - Bot Controller stopped
+2025-10-08 22:12:53 - signal_bot - INFO - Signal Bot 3.0 - Stopped
+2025-10-08 22:17:12 - signal_bot - INFO - ==================================================
+2025-10-08 22:17:12 - signal_bot - INFO - Signal Bot 3.0 - Starting...
+2025-10-08 22:17:12 - signal_bot - INFO - ==================================================
+2025-10-08 22:17:12 - signal_bot - WARNING - TELEGRAM_BOT_TOKEN not set, bot will not start
+2025-10-08 22:17:12 - signal_bot - INFO - Starting Bot Controller...
+2025-10-08 22:17:12 - signal_bot - ERROR - Cannot start bot: TELEGRAM_BOT_TOKEN not set
+2025-10-08 22:17:12 - signal_bot - INFO - Bot Controller stopped
+2025-10-08 22:17:12 - signal_bot - INFO - Signal Bot 3.0 - Stopped
